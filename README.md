@@ -11,9 +11,7 @@
 | last_name       | string | null: false |
 | first_name_kana | string | null: false |
 | last_name_kana  | string | null: false |
-| birth_year      | string | null: false |
-| birth_month     | string | null: false |
-| birth_day       | string | null: false |
+| birth_day       | date   | null: false |
 
 ### Association
 
@@ -29,8 +27,14 @@
 | explanation     | text       | null: false                    |
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_kew :true |
+| category        | integer    | null: false                    |
+| where_from_item | integer    | null: false                    |
+| when_post_item  | integer    | null: false                    |
+| items_status    | integer    | null: false                    |
+| shipping        | integer    | null: false                    |
 
 ### imageはActiveStorageで管理
+### category以下のカラムは、ActiveHashで管理
 
 ### Association
 
@@ -55,14 +59,16 @@
 
 | Column          | Type        | option                         |
 | --------------- | ----------- | ------------------------------ |
-| address1        | string      | null: false                    |
-| address2        | string      | null: false                    |
+| building        | string      |                                |
+| address         | string      | null: false                    |
 | city            | string      | null: false                    |
-| state_province  | string      | null: false                    |
-| zip_code        | integer     | null: false                    |
-| phone_num       | integer     | null: false                    |
+| prefecture      | integer     | null: false                    |
+| zip_code        | string      | null: false                    |
+| phone_num       | string      | null: false                    |
 | user            | references  | null: false, foreign_kew :true |
 | item            | references  | null: false, foreign_kew :true |
+
+### prefectureはActiveHashで管理
 
 ### Association
 
