@@ -27,20 +27,24 @@
 | explanation     | text       | null: false                    |
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
-| category        | integer    | null: false                    |
-| where_from_item | integer    | null: false                    |
-| when_post_item  | integer    | null: false                    |
-| items_status    | integer    | null: false                    |
-| shipping        | integer    | null: false                    |
+
 
 ### imageはActiveStorageで管理
-### category以下のカラムは、ActiveHashで管理
 
 ### Association
 
 - has_many :comments
 - belongs_to :user
 - has_one :oder
+
+## 以下のカラムは、ActiveHashで管理
+
+| category_id     | integer    | null: false                    |
+| where_from_id   | integer    | null: false                    |
+| when_post_id    | integer    | null: false                    |
+| items_status_id | integer    | null: false                    |
+| shipping_id     | integer    | null: false                    |
+
 
 ## commentsテーブル
 
