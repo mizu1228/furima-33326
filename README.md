@@ -26,7 +26,7 @@
 | item            | string     | null: false                    |
 | explanation     | text       | null: false                    |
 | price           | integer    | null: false                    |
-| user            | references | null: false, foreign_kew :true |
+| user            | references | null: false, foreign_key: true |
 | category        | integer    | null: false                    |
 | where_from_item | integer    | null: false                    |
 | when_post_item  | integer    | null: false                    |
@@ -47,8 +47,8 @@
 | Column          | Type       | option                         |
 | --------------- | ---------- | ------------------------------ |
 | comment         | text       | null: false                    |
-| user            | references | null: false, foreign_kew :true |
-| item            | references | null: false, foreign_kew :true |
+| user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
 
 ### Association
 
