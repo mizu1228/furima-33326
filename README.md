@@ -59,7 +59,7 @@
 - belongs_to :user
 - belongs_to :item
 
-## ordersテーブル
+## ship_addressテーブル
 
 | Column          | Type        | option                         |
 | --------------- | ----------- | ------------------------------ |
@@ -78,3 +78,17 @@
 
 - belongs_to :user
 - belongs_to :item
+- has_one    :user
+- has_many   :items
+
+## shopping_dataテーブル
+
+| Column          | Type        | option                         |
+| --------------- | ----------- | ------------------------------ |
+| user            | references  | null: false, foreign_kew :true |
+| item            | references  | null: false, foreign_kew :true |
+
+### Association
+
+- has_one  :user
+- has_many :items
