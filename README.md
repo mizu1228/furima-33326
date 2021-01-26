@@ -74,10 +74,7 @@
 
 ### Association
 
-- belongs_to :user
-- belongs_to :item
-- has_one    :user
-- has_many   :items
+- has_one shopping_data
 
 ## shopping_dataテーブル
 
