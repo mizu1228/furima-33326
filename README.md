@@ -69,8 +69,6 @@
 | prefecture      | integer     | null: false                    |
 | zip_code        | string      | null: false                    |
 | phone_num       | string      | null: false                    |
-| user            | references  | null: false, foreign_kew :true |
-| item            | references  | null: false, foreign_kew :true |
 
 ### prefectureはActiveHashで管理
 
