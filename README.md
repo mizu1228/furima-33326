@@ -18,19 +18,20 @@
 - has_many :items
 - has_many :comments
 - has_many :shopping_dates
+
 ## itemsテーブル
 
-| Column          | Type       | option                         |
-| --------------- | ---------- | ------------------------------ |
-| item            | string     | null: false                    |
-| explanation     | text       | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
-| category_id     | integer    | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| when_post_id    | integer    | null: false                    |
-| items_status_id | integer    | null: false                    |
-| shipping_id     | integer    | null: false                    |
+| Column           | Type       | option                         |
+| ---------------- | ---------- | ------------------------------ |
+| item             | string     | null: false                    |
+| explanation      | text       | null: false                    |
+| price            | integer    | null: false                    |
+| user             | references | null: false, foreign_key: true |
+| category_id      | integer    | null: false                    |
+| prefecture_id    | integer    | null: false                    |
+| when_post_id     | integer    | null: false                    |
+| items_status_id  | integer    | null: false                    |
+| shipping_cost_id | integer    | null: false                    |
 
 
 ### imageはActiveStorageで管理
