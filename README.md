@@ -87,5 +87,5 @@
 
 - belongs_to  :user
 - has_one     :ship_address
-- has_many    :items
+- has_one     :items
 
