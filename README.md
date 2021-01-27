@@ -1,24 +1,89 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type   | option                      |
+| ------------------ | ------ | --------------------------- |
+| name               | string | null:   false               |
+| email              | string | unique: true, null: false   |
+| encrypted_password | string | null:   false               |
+| first_name         | string | null:   false               |
+| last_name          | string | null:   false               |
+| first_name_kana    | string | null:   false               |
+| last_name_kana     | string | null:   false               |
+| birth_day          | date   | null:   false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :comments
+- has_many :shopping_dates
+## itemsテーブル
 
-* Configuration
+| Column          | Type       | option                         |
+| --------------- | ---------- | ------------------------------ |
+| item            | string     | null: false                    |
+| explanation     | text       | null: false                    |
+| price           | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
+| category_id     | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| when_post_id    | integer    | null: false                    |
+| items_status_id | integer    | null: false                    |
+| shipping_id     | integer    | null: false                    |
 
-* Database creation
 
-* Database initialization
+### imageはActiveStorageで管理
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- has_many :comments
+- belongs_to :user
+- has_one :shopping_data
 
-* Deployment instructions
 
-* ...
+## commentsテーブル
+
+| Column          | Type       | option                         |
+| --------------- | ---------- | ------------------------------ |
+| comment         | text       | null: false                    |
+| user            | references | null: false, foreign_key: true |
+| item            | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+
+## ship_addressテーブル
+
+| Column          | Type        | option                         |
+| --------------- | ----------- | ------------------------------ |
+| building        | string      |                                |
+| address         | string      | null: false                    |
+| city            | string      | null: false                    |
+| prefecture_id   | integer     | null: false                    |
+| zip_code        | string      | null: false                    |
+| phone_num       | string      | null: false                    |
+
+| shopping_data   | references  | null: false, foreign_key: true |
+
+### prefectureはActiveHashで管理
+
+### Association
+
+- belongs_to :shopping_data
+
+## shopping_dataテーブル
+
+| Column          | Type        | option                         |
+| --------------- | ----------- | ------------------------------ |
+| user            | references  | null: false, foreign_key :true |
+| item            | references  | null: false, foreign_key :true |
+
+### Association
+
+- belongs_to  :user
+- belongs_to  :item
+- has_one     :ship_address
+
