@@ -40,7 +40,7 @@
 ## 以下のカラムは、ActiveHashで管理
 
 | category_id     | integer    | null: false                    |
-| where_from_id   | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
 | when_post_id    | integer    | null: false                    |
 | items_status_id | integer    | null: false                    |
 | shipping_id     | integer    | null: false                    |
@@ -66,7 +66,7 @@
 | building        | string      |                                |
 | address         | string      | null: false                    |
 | city            | string      | null: false                    |
-| prefecture      | integer     | null: false                    |
+| prefecture_id   | integer     | null: false                    |
 | zip_code        | string      | null: false                    |
 | phone_num       | string      | null: false                    |
 
