@@ -17,8 +17,7 @@
 
 - has_many :items
 - has_many :comments
-- has_many :orders
-
+- has_many :shopping_dates
 ## itemsテーブル
 
 | Column          | Type       | option                         |
@@ -35,7 +34,7 @@
 
 - has_many :comments
 - belongs_to :user
-- has_one :oder
+- has_one :shopping_data
 
 ## 以下のカラムは、ActiveHashで管理
 
