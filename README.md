@@ -26,6 +26,11 @@
 | explanation     | text       | null: false                    |
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
+| category_id     | integer    | null: false                    |
+| prefecture_id   | integer    | null: false                    |
+| when_post_id    | integer    | null: false                    |
+| items_status_id | integer    | null: false                    |
+| shipping_id     | integer    | null: false                    |
 
 
 ### imageはActiveStorageで管理
@@ -35,14 +40,6 @@
 - has_many :comments
 - belongs_to :user
 - has_one :shopping_data
-
-## 以下のカラムは、ActiveHashで管理
-
-| category_id     | integer    | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| when_post_id    | integer    | null: false                    |
-| items_status_id | integer    | null: false                    |
-| shipping_id     | integer    | null: false                    |
 
 
 ## commentsテーブル
