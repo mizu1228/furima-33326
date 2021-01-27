@@ -65,6 +65,7 @@
 | prefecture_id   | integer     | null: false                    |
 | zip_code        | string      | null: false                    |
 | phone_num       | string      | null: false                    |
+| shopping_data   | references  | null: false, foreign_key: true |
 
 ### prefectureはActiveHashで管理
 
