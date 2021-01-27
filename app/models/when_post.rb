@@ -1,4 +1,4 @@
-class When_post < ActiveHash::Base
+class WhenPost < ActiveHash::Base
   self.data = [
     { id: 1, name: '１〜２日で発送' }
     { id: 2, name: '２〜３日で発送' }
