@@ -30,3 +30,4 @@
 yarn-debug.log*
 .yarn-integrity
 .Ds_store
+app/controllers/items_controller.rb
