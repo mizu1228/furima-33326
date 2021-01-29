@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
   def index
   end
-
-  def new
-    @user = User.new
-  end
-  
+  # 一時的にindexアクションを設置、itemsコントローラを作成したならば削除する
 end
