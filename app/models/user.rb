@@ -17,3 +17,5 @@ class User < ApplicationRecord
 
   has_many :items
 end
+
+# 上のバリデーションたちは、with_optionでまとめれる？？
