@@ -77,8 +77,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price は半角数字300~9999999の間で入力してください")
       end
-      it '価格は半角数字でないと出品できない' do
+      it '価格はが半角数字以外だと出品できない' do
         @item.price = "５０００あa"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price は半角数字300~9999999の間で入力してください")
+      end
+      it '価格が半角英語のみだと出品できない' do
+        @item.price = "five thousand"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price は半角数字300~9999999の間で入力してください")
       end
