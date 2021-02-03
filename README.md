@@ -29,7 +29,7 @@
 | category_id     | integer    | null: false                    |
 | prefecture_id   | integer    | null: false                    |
 | when_post_id    | integer    | null: false                    |
-| items_status_id | integer    | null: false                    |
+| item_status_id  | integer    | null: false                    |
 | shipping_id     | integer    | null: false                    |
 
 
