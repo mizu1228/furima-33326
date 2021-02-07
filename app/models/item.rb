@@ -1,7 +1,7 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-
-  belongs_to :prefecture, :category, :when_post, :item_status, :shipping_id, :user
+  belongs_to :prefecture, :category, :when_post, :item_status, :shipping
+  belongs_to :user
   has_one_attached :image
 
   with_options presence: true do
