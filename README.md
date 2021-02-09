@@ -74,7 +74,7 @@
 
 - belongs_to :shopping_data
 
-## shopping_dataテーブル
+## orderテーブル
 
 | Column          | Type        | option                         |
 | --------------- | ----------- | ------------------------------ |
