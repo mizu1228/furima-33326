@@ -1,7 +1,7 @@
 class Shopping
 
   include ActiveModel::Model
-  attr_accessor :building, :address, :city, :prefecture_id, :zip_code, :phone_num, :user_id, :item_id, :order_id
+  attr_accessor :item, :price, :image, :building, :address, :city, :prefecture_id, :zip_code, :phone_num, :user_id, :item_id, :order_id
 
   with_options presence: true do
     validates :address, :city
@@ -11,9 +11,9 @@ class Shopping
   end
 
   def save
-    item = Item.create#(item: item, image: image, price: price)
-    ShipAddress.create#(building: building, address: address, city: city, prefecture_id: prefecture.id, zip_code: zip_code, phone_num: phone_num, user_id: user.id, item_id: item.id)
-    Order.create#(user_id: user.id, item_id: item.id)
+    item = Item.create(item: item, price: price, image: image)
+    ShipAddress.create(building: building, address: address, city: city, prefecture_id: prefecture_id, zip_code: zip_code, phone_num: phone_num, user_id: user_id, item_id: item_id)
+    Order.create(user_id: user_id, item_id: item_id)
   end
 
 end
