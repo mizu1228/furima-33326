@@ -66,8 +66,10 @@ ActiveRecord::Schema.define(version: 2021_02_09_232107) do
     t.string "phone_num", null: false
     t.bigint "user_id", null: false
     t.bigint "order_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_ship_addresses_on_item_id"
     t.index ["order_id"], name: "index_ship_addresses_on_order_id"
     t.index ["user_id"], name: "index_ship_addresses_on_user_id"
   end
@@ -94,6 +96,7 @@ ActiveRecord::Schema.define(version: 2021_02_09_232107) do
   add_foreign_key "items", "users"
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
+  add_foreign_key "ship_addresses", "items"
   add_foreign_key "ship_addresses", "orders"
   add_foreign_key "ship_addresses", "users"
 end
