@@ -1,7 +1,8 @@
 function pay() {
-    const pay = document.getElementById("pay-btn")
+    const pay = document.getElementById("charge-form")
 
-    pay.addEventListener('click', function(){
+    pay.addEventListener('submit', function(e) {
+      e.preventDefault(); 
       console.log("クリック！")
     })
   }
