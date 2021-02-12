@@ -8,9 +8,7 @@ class CreateShipAddresses < ActiveRecord::Migration[6.0]
       t.integer    :prefecture_id, null: false
       t.string     :zip_code,  null: false
       t.string     :phone_num, null: false
-      t.references :user,      null: false, foreign_key: true
       t.references :order,     null: false, foreign_key: true
-      t.references :item,      null: false, foreign_key: true
       t.timestamps
     end
   end
