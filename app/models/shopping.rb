@@ -1,7 +1,7 @@
 class Shopping
 
   include ActiveModel::Model
-  attr_accessor :building, :address, :city, :prefecture_id, :zip_code, :phone_num, :user_id, :item_id
+  attr_accessor :building, :address, :city, :prefecture_id, :zip_code, :phone_num, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :address, :city
