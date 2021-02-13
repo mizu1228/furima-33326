@@ -17,22 +17,59 @@ RSpec.describe Shopping, type: :model do
     context '購入できない時' do
 
       it 'tokenが空では購入できないこと' do
+        @shopping.token = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Token can't be blank")
       end
       it '郵便番号がないと購入できないこと' do
+        @shopping.zip_code = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Zip code can't be blank")
       end
       it '郵便番号にハイフン-がないと購入できないこと' do
+        @shopping.zip_code = "0000000"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Zip code はハイフン(-)を入れて、正しい桁数で入力してください")
       end
       it '郵便番号の桁が正しくないと購入できないこと' do
+        @shopping.zip_code = "00"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Zip code はハイフン(-)を入れて、正しい桁数で入力してください")
       end
       it '都道府県が選択されていないと購入できないこと' do
+        @shopping.prefecture_id = "0"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Prefecture は必須です")
       end
       it '市区町村が空だと購入できないこと' do
+        @shopping.city = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("City can't be blank")
       end
       it '番地が空だと購入できないこと' do
+        @shopping.address = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Address can't be blank")
       end
       it '電話番号が空だと購入できないこと' do
+        @shopping.phone_num = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Phone num can't be blank")
       end
-      it '電話番号が10桁又は11桁の整数でないと購入できないこと' do
+      it '電話番号が10桁又は11桁でないと購入できないこと' do
+        @shopping.phone_num = "123456789"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Phone num は半角数字10または11桁で入力してください(ハイフン不要)")
+      end
+      it '電話番号が半角数字でないと購入できないこと' do
+        @shopping.phone_num = "００あ漢字a"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Phone num は半角数字10または11桁で入力してください(ハイフン不要)")
+      end
+      it '電話番号にハイフン-があると購入できないこと' do
+        @shopping.phone_num = "000-0000-0000"
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Phone num は半角数字10または11桁で入力してください(ハイフン不要)")
       end
     end
   end
