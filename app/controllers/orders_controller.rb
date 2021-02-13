@@ -1,12 +1,15 @@
 class OrdersController < ApplicationController
-
+before_action :set_item, only: [:index, :create]
   def index
+    if current_user.id != @item.user_id && @item.order.nil?
     @shopping = Shopping.new
     @item = Item.find(params[:item_id])  
+    else
+      redirect_to root_path
+    end
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @shopping = Shopping.new(order_params)
       if @shopping.valid?
         pay_item
@@ -32,5 +35,10 @@ class OrdersController < ApplicationController
     )
   end
 
+  private
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 
 end
