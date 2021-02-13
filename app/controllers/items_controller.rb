@@ -21,7 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @orders = Order.all
+    if Order.any?
+      @order = Order.find(1)
+    end
   end
 
   def edit
