@@ -21,11 +21,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if Order.any?
-      @order = Order.find(1)
+    if Order.any? && !@item.order.nil?
+      @order = @item.order.item_id
     end
   end
-
+  
   def edit
     unless current_user.id == @item.user_id
       redirect_to action: :index
@@ -41,7 +41,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-
     if current_user.id == @item.user_id && @item.destroy
       redirect_to root_path
     else
@@ -68,10 +67,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
-  def order_params
-    params.require(:order).merge(item_id: params[:item_id])
-  end
-
-
 end
