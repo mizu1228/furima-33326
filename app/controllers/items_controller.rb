@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order("Created_at DESC")
+    @orders = Order.all
   end
 
   def new
@@ -64,5 +65,10 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def order_params
+    params.require(:order).merge(item_id: params[:item_id])
+  end
+
 
 end
