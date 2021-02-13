@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @orders = Order.all
   end
 
   def edit
