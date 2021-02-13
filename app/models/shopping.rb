@@ -4,7 +4,7 @@ class Shopping
   attr_accessor :building, :address, :city, :prefecture_id, :zip_code, :phone_num, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :address, :city
+    validates :address, :city, :token
     validates :zip_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: "はハイフン(-)を入れてください" }
     validates :phone_num, format: { with: /\A\d{10,11}\z/, message: "は半角数字10または11桁で入力してください" }
   end
