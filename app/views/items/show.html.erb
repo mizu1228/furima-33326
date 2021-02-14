@@ -9,11 +9,9 @@
       <%= image_tag @item.image ,class:"item-box-img" %>
       
       <% unless @item.order.nil? %>
-        <% if @item.id == @item.order.item_id %>
-          <div class="sold-out">
-            <span>Sold Out!!</span>
-          </div>
-        <% end %>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
       <% end %>
 
     </div>
