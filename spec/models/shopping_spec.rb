@@ -4,7 +4,10 @@ RSpec.describe Shopping, type: :model do
   describe '購入機能' do
 
     before do
-      @shopping = FactoryBot.build(:shopping)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
+      @shopping = FactoryBot.build(:shopping, user_id: @user.id, item_id: @item.id )
+      sleep(1)
     end
 
     context '購入できる時' do
@@ -25,12 +28,12 @@ RSpec.describe Shopping, type: :model do
         @shopping.valid?
         expect(@shopping.errors.full_messages).to include("Token can't be blank")
       end
-      it 'user_idが空だと購入できないこと' do
-        @shopping.user_id = ""
+      it 'userが紐づいていないと購入できないこと' do
+        @shopping.user_id = nil
         @shopping.valid?
         expect(@shopping.errors.full_messages).to include("User can't be blank")
       end
-      it 'item_idが空だと購入できないこと' do
+      it 'itemが紐づいていないと購入できないこと' do
         @shopping.item_id = ""
         @shopping.valid?
         expect(@shopping.errors.full_messages).to include("Item can't be blank")
