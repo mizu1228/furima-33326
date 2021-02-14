@@ -12,6 +12,10 @@ RSpec.describe Shopping, type: :model do
       it '必要な情報を正しく入力すれば購入できること' do
         expect(@shopping).to be_valid
       end
+      it 'buildingがなくても購入できること' do
+        @shopping.building = ""
+        expect(@shopping).to be_valid
+      end
     end
 
     context '購入できない時' do
@@ -20,6 +24,16 @@ RSpec.describe Shopping, type: :model do
         @shopping.token = ""
         @shopping.valid?
         expect(@shopping.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空だと購入できないこと' do
+        @shopping.user_id = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空だと購入できないこと' do
+        @shopping.item_id = ""
+        @shopping.valid?
+        expect(@shopping.errors.full_messages).to include("Item can't be blank")
       end
       it '郵便番号がないと購入できないこと' do
         @shopping.zip_code = ""
