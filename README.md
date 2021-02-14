@@ -17,7 +17,7 @@
 
 - has_many :items
 - has_many :comments
-- has_many :shopping_dates
+- has_many :orders
 ## itemsテーブル
 
 | Column          | Type       | option                         |
@@ -39,7 +39,7 @@
 
 - has_many :comments
 - belongs_to :user
-- has_one :shopping_data
+- has_one :order
 
 
 ## commentsテーブル
@@ -65,16 +65,18 @@
 | prefecture_id   | integer     | null: false                    |
 | zip_code        | string      | null: false                    |
 | phone_num       | string      | null: false                    |
-
-| shopping_data   | references  | null: false, foreign_key: true |
+| order           | references  | null: false, foreign_key: true |
+| user            | references  | null: false, foreign_key: true |
 
 ### prefectureはActiveHashで管理
 
 ### Association
 
-- belongs_to :shopping_data
+- belongs_to :user
+- belongs_to :order
+- belongs_to :prefecture
 
-## shopping_dataテーブル
+## orderテーブル
 
 | Column          | Type        | option                         |
 | --------------- | ----------- | ------------------------------ |

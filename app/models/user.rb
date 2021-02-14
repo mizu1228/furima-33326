@@ -14,5 +14,6 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には記号以外、半角英数字の両方を含めて設定してください'
 
   has_many :items
+  has_many :orders
 end
 

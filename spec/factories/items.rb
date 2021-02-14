@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :item do
-    item           {Faker::Lorem.word}
-    explanation    {Faker::Lorem.sentence}
-    price          {Faker::Number.number(digits: 7)}
-    category_id    {Faker::Number.within(range: 1..10)}
-    prefecture_id  {Faker::Number.within(range: 1..47)}
-    when_post_id   {Faker::Number.within(range: 1..3)}
-    item_status_id {Faker::Number.within(range: 1..5)}
-    shipping_id    {Faker::Number.within(range: 1..2)}
+    item           { 'test商品' }
+    explanation    { 'test商品です' }
+    price          { 8888 }
+    category_id    { 3 }
+    prefecture_id  { 2 }
+    when_post_id   { 2 }
+    item_status_id { 3 }
+    shipping_id    { 1 }
     association :user
 
     after(:build) do |item|
