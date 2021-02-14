@@ -33,6 +33,21 @@ RSpec.describe "Users", type: :system do
     end
     context 'ユーザー登録できないとき' do
       it '誤った情報ではユーザー登録できず、登録ページに戻ってくる' do
+        visit root_path
+        expect(page).to have_content('新規登録')
+        visit new_user_registration_path
+        fill_in 'name', with: ''
+        fill_in 'email', with: ''
+        fill_in 'password', with: ''
+        fill_in 'password-confirmation', with: ''
+        fill_in 'last-name', with: ''
+        fill_in 'first-name', with: ''
+        fill_in 'last-name-kana', with: ''
+        fill_in 'first-name-kana', with: ''
+        expect{
+          find('input[name="commit"]').click
+        }.to change { User.count }.by(0)
+        expect(current_path).to eq('/users')
       end
     end
   end
