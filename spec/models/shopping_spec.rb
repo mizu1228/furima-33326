@@ -51,7 +51,7 @@ RSpec.describe Shopping, type: :model do
         expect(@shopping.errors.full_messages).to include("Zip code はハイフン(-)を入れて、正しい桁数で入力してください")
       end
       it '都道府県が選択されていないと購入できないこと' do
-        @shopping.prefecture_id = "0"
+        @shopping.prefecture_id = 0
         @shopping.valid?
         expect(@shopping.errors.full_messages).to include("Prefecture は必須です")
       end
