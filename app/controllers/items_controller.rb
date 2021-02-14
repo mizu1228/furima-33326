@@ -21,9 +21,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if Order.any? && !@item.order.nil?
-      @order = @item.order.item_id
-    end
   end
   
   def edit
