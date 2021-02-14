@@ -7,9 +7,6 @@ FactoryBot.define do
     address        { '大字市川町字桔梗野' }
     building       { '過去いたとこ！' }
     phone_num      { '99999999999' }
-
-    association :user
-    association :item
     
   end
 end
