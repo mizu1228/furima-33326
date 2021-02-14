@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def user_judge
-    if current_user.id != @item.user_id || !@item.order.nil?
+    if current_user.id != @item.user_id || @item.order != nil
       redirect_to action: :index
     end
   end
