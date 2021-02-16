@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :items, except: :index do
     resources :orders, only: [:index, :create]
   end
+  resources :dummy_item, only: :index
 end
