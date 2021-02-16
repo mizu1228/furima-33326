@@ -59,7 +59,9 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    if Item != nil
+      @item = Item.find(params[:id])
+    end
   end
 
   def user_judge
