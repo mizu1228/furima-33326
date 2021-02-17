@@ -1,0 +1,108 @@
+<%= render "shared/header" %>
+
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">Profile</h2>
+    <div class="item-img-content">
+      <%# if @user.image.attached? %>
+        <%#= image_tag ,class:"item-box-img" %>
+      <%# else %>
+        <%= image_tag 'item-sample.png' ,class:"item-box-img" %>
+      <%# end %>
+    </div>
+    <div class="item-price-box">
+      <span class="item-price">
+        <%= @user.name %>
+      </span>
+    </div>
+
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">興味のあるカテゴリー</th>
+          <td class="detail-value"><%= "カテゴリー名" %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">自己紹介</th>
+          <td class="detail-value"><%= "自己紹介文" %></td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="item-box">
+      <h2 class="user-items">
+        <%= @user.name %>さんの出品一覧
+      </h2>
+    </div>
+
+    
+
+    
+    <div class="item-contents">
+      <ul class="item-lists">
+        <% @items.each do |item| %>
+          <% if @user.id == item.user_id %>
+            <li class='list'>
+              <%= link_to item_path(item.id), method: :get do %>
+                <div class='item-img-content'>
+                  <%= image_tag item.image, class: "item-img" %>
+          
+                <% if item.order != nil %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
+
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.item %>
+                  </h3>
+                  <div class='item-price'>
+                   <span><%= item.price %>円<br><%= item.shipping.name %></span>
+                   <div class='star-btn'>
+                      <%= image_tag "star.png", class:"star-icon" %>
+                      <span class='star-count'>0</span>
+                   </div>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+  <% if user_signed_in? %>
+    <% if current_user.id == @user.id %>
+      <%= link_to "プロフィール編集", edit_user_path(current_user.id), method: :get, class: "item-red-btn" %>
+      <p class="or-text">or</p>
+      <%= link_to "アカウント削除",  "#", class:"item-destroy" %>
+    <% end %>
+  <% end %>
+
+    <div class="item-explain-box">
+      <span><%= "なにかしら" %></span>
+    </div>
+
+
+  <% if user_signed_in? %>
+    <% if current_user.id != @user.id %>
+    <div class="option">
+      <div class="favorite-btn">
+        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+        <span>フォローする</span>
+      </div>
+      <div class="report-btn">
+        <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
+        <span>ユーザーの通報</span>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
+
