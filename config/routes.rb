@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :orders, only: [:index, :create]
   end
   resources :dummy_item, only: :index
+  resources :users, only: [:show]
 end
