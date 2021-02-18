@@ -4,11 +4,11 @@
   <div class="item-box">
     <h2 class="name">Profile</h2>
     <div class="item-img-content">
-      <%# if @user.image.attached? %>
-        <%#= image_tag ,class:"item-box-img" %>
-      <%# else %>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image,class:"item-box-img" %>
+      <% else %>
         <%= image_tag 'item-sample.png' ,class:"item-box-img" %>
-      <%# end %>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -45,6 +45,7 @@
     
     <div class="item-contents">
       <ul class="item-lists">
+      <% if @items.any? %>
         <% @items.each do |item| %>
           <% if @user.id == item.user_id %>
             <li class='list'>
@@ -75,6 +76,25 @@
             </li>
           <% end %>
         <% end %>
+      <% else %>
+            <li class='list'>
+              <%= link_to dummy_item_index_path do %>
+              <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  出品中の商品はありません
+               </h3>
+               <div class='item-price'>
+                  <span>サンプル画像</span>
+                 <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                     <span class='star-count'>0</span>
+                  </div>
+               </div>
+              </div>
+              <% end %>
+           </li>
+      <% end %>
       </ul>
     </div>
 
