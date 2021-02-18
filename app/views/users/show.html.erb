@@ -4,11 +4,11 @@
   <div class="item-box">
     <h2 class="name">Profile</h2>
     <div class="item-img-content">
-      <%# if @user.image.attached? %>
-        <%#= image_tag ,class:"item-box-img" %>
-      <%# else %>
+      <% if @user.image.attached? %>
+        <%= image_tag @user.image,class:"item-box-img" %>
+      <% else %>
         <%= image_tag 'item-sample.png' ,class:"item-box-img" %>
-      <%# end %>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -19,12 +19,12 @@
     <table class="detail-table">
       <tbody>
         <tr>
-          <th class="detail-item">興味のあるカテゴリー</th>
-          <td class="detail-value"><%= "カテゴリー名" %></td>
-        </tr>
-        <tr>
           <th class="detail-item">自己紹介</th>
-          <td class="detail-value"><%= "自己紹介文" %></td>
+          <% if @user.introduce != nil %>
+          <td class="detail-value"><%= @user.introduce %></td>
+          <% else %>
+          <td class="detail-value"><%= "" %></td>
+          <% end %>
         </tr>
         
       </tbody>
@@ -41,6 +41,7 @@
     
     <div class="item-contents">
       <ul class="item-lists">
+      <% if @items.any? %>
         <% @items.each do |item| %>
           <% if @user.id == item.user_id %>
             <li class='list'>
@@ -71,12 +72,31 @@
             </li>
           <% end %>
         <% end %>
+      <% else %>
+            <li class='list'>
+              <%= link_to dummy_item_index_path do %>
+              <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  出品中の商品はありません
+               </h3>
+               <div class='item-price'>
+                  <span>サンプル画像</span>
+                 <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                     <span class='star-count'>0</span>
+                  </div>
+               </div>
+              </div>
+              <% end %>
+           </li>
+      <% end %>
       </ul>
     </div>
 
   <% if user_signed_in? %>
     <% if current_user.id == @user.id %>
-      <%= link_to "プロフィール編集", edit_user_path(current_user.id), method: :get, class: "item-red-btn" %>
+      <%= link_to "プロフィール編集", edit_user_registration_path(current_user.id), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "アカウント削除",  "#", class:"item-destroy" %>
     <% end %>

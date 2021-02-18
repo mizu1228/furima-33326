@@ -1,18 +1,31 @@
 <%= render "shared/second-header"%>
 
 
-<%= form_with model: @user, url: '/users', class: 'registration-main', local: true do |f| %>
+<%= form_with model: @user, url: user_registration_path(params[:id]), class: 'registration-main', local: true do |f| %>
 
 <div class='form-wrap'>
   <div class='form-header'>
     <h1 class='form-header-text'>
-      会員情報入力
+      会員情報編集
     </h1>
   </div>
 
 
   <%= render 'shared/error_messages', resource: @user %>
 
+
+  <div class="form-group">
+      <div class="form-text-wrap">
+        <label class="foem-text">プロフィール画像</label>
+        <span class="indispensable">任意</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてアップロード
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+      </div>
+  </div>
 
   <div class="form-group">
     <div class='form-text-wrap'>
@@ -100,13 +113,12 @@
   </div>
   <div class="form-group">
     <h2 class='form-bottom-text'>
-      「会員登録」のボタンを押すことにより、
-      <span>利用規約</span>
-      <br>に同意したものとみなします
+      編集完了を押すことにより、
+      <br>編集を上書きします
     </h2>
   </div>
   <div class='register-btn'>
-    <%= f.submit "会員登録" ,class:"register-red-btn" %>
+    <%= f.submit "編集完了" ,class:"register-red-btn" %>
   </div>
   <p class='register-info'>本人情報の登録について</p>
 </div>
