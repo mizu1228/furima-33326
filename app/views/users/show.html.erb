@@ -24,7 +24,11 @@
         </tr>
         <tr>
           <th class="detail-item">自己紹介</th>
-          <td class="detail-value"><%= "自己紹介文" %></td>
+          <% if @user.introduce != nil %>
+          <td class="detail-value"><%= @user.introduce %></td>
+          <% else %>
+          <td class="detail-value"><%= "" %></td>
+          <% end %>
         </tr>
         
       </tbody>
@@ -76,7 +80,7 @@
 
   <% if user_signed_in? %>
     <% if current_user.id == @user.id %>
-      <%= link_to "プロフィール編集", edit_user_path(current_user.id), method: :get, class: "item-red-btn" %>
+      <%= link_to "プロフィール編集", edit_user_registration_path(current_user.id), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "アカウント削除",  "#", class:"item-destroy" %>
     <% end %>
