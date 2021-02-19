@@ -93,6 +93,20 @@
     <% end %>
   </div>
 
+  <div class="comment-box">
+    <h4>＜コメント一覧＞</h4>
+    <% @comments.each do |comment| %>
+    <div class="comment-text">
+      <p>
+          <%= link_to comment.user.name, user_path(comment.user_id) %> : 
+          <%= comment.created_at.to_s(:datetime_jp) %>
+      </p>
+      <p>
+        <br><%= comment.comment %><br>
+      </p>
+    </div>
+    <% end %>
+  </div>
   <% if @item.user.deleted_at == nil %>
   <div class="comment-box">
   <% if user_signed_in? %>
@@ -113,6 +127,7 @@
   <% end %>
   </div>
   <% end %>
+  
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
