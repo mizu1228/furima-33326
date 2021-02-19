@@ -21,6 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if Item != nil
+      @comment = Comment.new
+    end
   end
   
   def edit

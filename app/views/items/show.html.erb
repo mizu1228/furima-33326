@@ -96,23 +96,21 @@
   <% if @item.user.deleted_at == nil %>
   <div class="comment-box">
   <% if user_signed_in? %>
-    <form>
-      <textarea class="comment-text"></textarea>
+    <%= form_with model: [@item, @comment], local: true do |f| %>
+      <%= f.text_area :comment, class:"comment-text"%>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
+      <%= f.submit "コメントする", class:"comment-btn" %>
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
-    <% else %>
+    <% end %>
+  <% else %>
       <p class="comment-warn">
         ※ コメントの投稿にはログインが必要です。
       </p>
-    <% end %>
+  <% end %>
   </div>
   <% end %>
   <div class="links">

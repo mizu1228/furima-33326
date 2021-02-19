@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
 
   def create
-    Comment.create(comment_params)
+    comment = Comment.create(comment_params)
+    redirect_to item_path(params[:item_id])
   end
 
 
