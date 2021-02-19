@@ -135,6 +135,10 @@
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
+            <% elsif item.user.deleted_at != nil %>
+              <div class='sold-out'>
+                <span>ユーザー退会済み</span>
+              </div>
             <% end %>
 
             </div>

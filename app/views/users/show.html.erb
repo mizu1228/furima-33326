@@ -2,7 +2,11 @@
 
 <div class="item-show">
   <div class="item-box">
+  <%if @user.deleted_at == nil %>
     <h2 class="name">Profile</h2>
+  <% else %>
+    <h2 class="name">※退会済みユーザーです</h2>
+  <% end %>
     <div class="item-img-content">
       <% if @user.image.attached? %>
         <%= image_tag @user.image,class:"item-box-img" %>
@@ -99,16 +103,14 @@
       <%= link_to "プロフィール編集", edit_user_registration_path(current_user), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "退会する",  user_delete_path(current_user), class:"item-destroy" %>
-    <% end %>
-  <% end %>
-
     <div class="item-explain-box">
       <span><%= "※退会手続きページへ移行します" %></span>
     </div>
-
+    <% end %>
+  <% end %>
 
   <% if user_signed_in? %>
-    <% if current_user.id != @user.id %>
+    <% if current_user.id != @user.id && @user.deleted_at == nil %>
     <div class="option">
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
