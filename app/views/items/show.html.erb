@@ -95,6 +95,7 @@
 
   <% if @item.user.deleted_at == nil %>
   <div class="comment-box">
+  <% if user_signed_in? %>
     <form>
       <textarea class="comment-text"></textarea>
       <p class="comment-warn">
@@ -107,6 +108,11 @@
         <span>コメントする<span>
       </button>
     </form>
+    <% else %>
+      <p class="comment-warn">
+        ※ コメントの投稿にはログインが必要です。
+      </p>
+    <% end %>
   </div>
   <% end %>
   <div class="links">
