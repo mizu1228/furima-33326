@@ -26,6 +26,18 @@ class User < ApplicationRecord
     result
   end
 
+  def soft_delete  
+    update_attribute(:deleted_at, Time.current)  
+  end
+
+  def active_for_authentication?  
+    super && !deleted_at  
+  end 
+
+  def inactive_message
+    !deleted_at ? super : :delete_account
+  end
+
   has_many :items
   has_many :orders
   has_one_attached :image
