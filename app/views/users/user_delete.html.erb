@@ -1,0 +1,100 @@
+<%= render "shared/header" %>
+
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">Profile</h2>
+    
+
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">自己紹介</th>
+          <% if @user.introduce != nil %>
+          <td class="detail-value"><%= @user.introduce %></td>
+          <% else %>
+          <td class="detail-value"><%= "" %></td>
+          <% end %>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="item-box">
+      <h2 class="user-items">
+        <%= @user.name %>さんの出品一覧
+      </h2>
+    </div>
+
+    
+
+    
+    <div class="item-contents">
+      <ul class="item-lists">
+      <% if @items.any? %>
+        <% @items.each do |item| %>
+          <% if @user.id == item.user_id %>
+            <li class='list'>
+              <%= link_to item_path(item.id), method: :get do %>
+                <div class='item-img-content'>
+                  <%= image_tag item.image, class: "item-img" %>
+          
+                <% if item.order != nil %>
+                  <div class='sold-out'>
+                    <span>Sold Out!!</span>
+                  </div>
+                <% end %>
+
+                </div>
+                <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.item %>
+                  </h3>
+                  <div class='item-price'>
+                   <span><%= item.price %>円<br><%= item.shipping.name %></span>
+                   <div class='star-btn'>
+                      <%= image_tag "star.png", class:"star-icon" %>
+                      <span class='star-count'>0</span>
+                   </div>
+                  </div>
+                </div>
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      <% else %>
+            <li class='list'>
+              <%= link_to dummy_item_index_path do %>
+              <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  出品中の商品はありません
+               </h3>
+               <div class='item-price'>
+                  <span>サンプル画像</span>
+                 <div class='star-btn'>
+                    <%= image_tag "star.png", class:"star-icon" %>
+                     <span class='star-count'>0</span>
+                  </div>
+               </div>
+              </div>
+              <% end %>
+           </li>
+      <% end %>
+      </ul>
+    </div>
+
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <%= link_to "アカウント削除",  user_registration_path, method: :delete, class:"item-destroy" %>
+    <% end %>
+  <% end %>
+
+    <div class="item-explain-box">
+      <span><%= "なにかしら" %></span>
+    </div>
+
+  </div>
+</div>
+
+<%= render "shared/footer" %>
+
