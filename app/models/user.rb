@@ -38,7 +38,7 @@ class User < ApplicationRecord
     !deleted_at ? super : :delete_account
   end
 
-  has_many :items
+  has_many :items, dependent: :destroy
   has_many :orders
   has_one_attached :image
 end
