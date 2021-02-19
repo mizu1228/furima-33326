@@ -93,22 +93,48 @@
     <% end %>
   </div>
 
+  <div class="comment-box">
+    <h4>＜コメント一覧＞</h4>
+    <% if @comments != nil %>
+      <% @comments.each do |comment| %>
+        <div class="comment-text">
+          <p>
+            <%= link_to comment.user.name, user_path(comment.user_id) %> : 
+            <%= comment.created_at.to_s(:datetime_jp) %>
+          </p>
+          <p>
+            <br><%= comment.comment %><br>
+          </p>
+        </div>
+      <% end %>
+    <% else %>
+        <div class="comment-text">
+          まだコメントがありません
+        </div>
+    <% end %>
+  </div>
+
   <% if @item.user.deleted_at == nil %>
   <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
+  <% if user_signed_in? %>
+    <%= form_with model: [@item, @comment], local: true do |f| %>
+      <%= f.text_area :comment, class:"comment-text", placeholder: "１４０字まで" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
-      <button type="submit" class="comment-btn">
+      <%= f.submit "コメントする", class:"comment-btn" %>
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
+    <% end %>
+  <% else %>
+      <p class="comment-warn">
+        ※ コメントの投稿にはログインが必要です。
+      </p>
+  <% end %>
   </div>
   <% end %>
+  
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品

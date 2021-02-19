@@ -21,6 +21,10 @@ class ItemsController < ApplicationController
   end
 
   def show
+    if Item != nil
+      @comment = Comment.new
+      @comments = @item.comments.order("Created_at DESC").includes(:user)
+    end
   end
   
   def edit
