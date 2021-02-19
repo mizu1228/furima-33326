@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   
 before_action :set_item, only: [:index, :create]
-before_action :user_judge, only: [:index, :create]
+before_action :access_judge, only: [:index, :create]
 before_action :authenticate_user!, only: [:index, :create]
 
   def index
@@ -40,9 +40,9 @@ before_action :authenticate_user!, only: [:index, :create]
     @item = Item.find(params[:item_id])
   end
 
-  def user_judge
+  def access_judge
     if user_signed_in?
-      if current_user.id == @item.user_id || @item.order != nil
+      if current_user.id == @item.user_id || @item.order != nil || @item.user.deleted_at != nil
         redirect_to root_path
       end
     end
