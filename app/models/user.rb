@@ -40,6 +40,7 @@ class User < ApplicationRecord
 
   has_many :items, dependent: :destroy
   has_many :orders
+  has_many :comments
   has_one_attached :image
 end
 
