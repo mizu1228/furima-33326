@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'items#index'
+  get '/user_delete' => 'users#user_delete'
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
