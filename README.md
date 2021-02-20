@@ -36,7 +36,6 @@
 | item_status_id  | integer    | null: false                    |
 | shipping_id     | integer    | null: false                    |
 | comment_id      | reference  | foreign_key: true              |
-| brand_id        | reference  | foreign_key: true              |
 
 
 ### imageはActiveStorageで管理
@@ -101,8 +100,7 @@
 
 | Column       | Type       | Option                         |
 | ------------ | ---------- | ------------------------------ |
-| brand        | string     | null: false                    |
-| item_id      | references | null: false, foreign_key: true |
+| brand        | string     | null: false, uniqueness: true  |
 
 ### Association
 
@@ -113,8 +111,8 @@
 
 | Column      | Type       | Option                         |
 | ----------- | ---------- | ------------------------------ |
-| item_id     | reference  | null: false, foreign_key: true |
-| brand_id    | reference  | null: false, foreign_key: true |
+| item        | reference  | null: false, foreign_key: true |
+| brand       | reference  | null: false, foreign_key: true |
 
 ### Association
 
