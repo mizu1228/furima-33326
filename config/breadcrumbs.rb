@@ -2,6 +2,41 @@ crumb :root do
   link "Home", root_path
 end
 
+crumb :item_new do
+  link "出品ページ", new_item_path
+  parent :root
+end
+
+crumb :item_show do
+  link "商品ページ", item_path
+  parent :root
+end
+
+crumb :item_edit do
+  link "商品編集ページ", edit_item_path
+  parent :item_show
+end
+
+crumb :order_item do
+  link "購入ページ", item_orders_path
+  parent :root
+end
+
+crumb :user_show do
+  link "ユーザーページ", user_path(current_user.id)
+  parent :root
+end
+
+crumb :user_edit do
+  link "ユーザー編集", edit_user_registration_path
+  parent :user_show
+end
+
+crumb :user_delete do
+  link "退会ページ", user_path(:id)
+  parent :user_show
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
