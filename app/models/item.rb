@@ -10,6 +10,8 @@ class Item < ApplicationRecord
   has_one    :order
   has_one_attached :image
   has_many :comments
+  has_many :item_brands
+  has_many :brands, through: :item_brands
 
   with_options presence: true do
     validates :image
