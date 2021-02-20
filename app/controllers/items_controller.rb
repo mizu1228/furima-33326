@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :user_judge, only: [:edit, :update]
 
   def index
-    @items = Item.order("Created_at DESC")
+    @items = Item.order(created_at: :desc)
   end
 
   def new
@@ -13,7 +13,8 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-      if @item.save
+      if @item.valid?
+        @item.save
         redirect_to root_path
       else
         render :new
@@ -58,7 +59,8 @@ class ItemsController < ApplicationController
       :when_post_id, 
       :item_status_id, 
       :shipping_id, 
-      :image
+      :image,
+      # :brand
     ).merge(user_id: current_user.id)
   end
 
