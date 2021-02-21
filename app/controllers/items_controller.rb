@@ -47,6 +47,10 @@ class ItemsController < ApplicationController
     end
   end
 
+  def search
+    @items = Item.search(params[:keyword])
+  end
+
   private
 
   def item_params
@@ -60,7 +64,7 @@ class ItemsController < ApplicationController
       :item_status_id, 
       :shipping_id, 
       :image,
-      # :brand
+      # :brand  タグ実装時に使う予定
     ).merge(user_id: current_user.id)
   end
 
