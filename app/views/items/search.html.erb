@@ -1,0 +1,38 @@
+<%= form_with(url: search_items_path, local: true, method: :get, class: "search-form") do |form| %>
+  <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "search-input" %>
+  <%= form.submit "検索", class: "search-btn" %>
+<% end %>
+<ul class="item-lists">
+  <% @items.each do |item| %>
+    <li class='list'>        
+          <%= link_to item_path(item.id), method: :get do %>
+            <div class='item-img-content'>
+              <%= image_tag item.image, class: "item-img" %>
+          
+            <% if item.order != nil %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% elsif item.user.deleted_at != nil %>
+              <div class='sold-out'>
+                <span>ユーザー退会済み</span>
+              </div>
+            <% end %>
+
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= item.item %>
+              </h3>
+              <div class='item-price'>
+                <span><%= item.price %>円<br><%= item.shipping.name %></span>
+                <div class='star-btn'>
+                  <%= image_tag "star.png", class:"star-icon" %>
+                  <span class='star-count'>0</span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </li>
+  <% end %>
+</ul>
