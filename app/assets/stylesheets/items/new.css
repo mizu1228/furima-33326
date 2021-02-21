@@ -96,6 +96,11 @@
   padding: 2vh 0;
 }
 
+.img-preview {
+  width: 100px;
+  height: 100px;
+}
+
 .items-text {
   width: 100%;
   padding: 16px 16px 8px;
