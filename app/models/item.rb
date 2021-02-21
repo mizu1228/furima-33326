@@ -22,4 +22,13 @@ class Item < ApplicationRecord
   has_many :item_brands
   has_many :brands, through: :item_brands
 
+  def self.search(search)
+    if search != ""
+      Item.where('item LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
+
+  
 end
