@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
       :when_post_id, 
       :item_status_id, 
       :shipping_id, 
-      :image,
+      :image
       # :brand  タグ実装時に使う予定
     ).merge(user_id: current_user.id)
   end
