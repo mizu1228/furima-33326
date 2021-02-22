@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+  # devise_scope :user do
+  #   get 'address', to: 'users/registrations#new_address'
+  #   post 'address', to: 'users/registrations#create_address'
+  # end
 
   resources :items, except: :index do
     resources :orders, only: [:index, :create]

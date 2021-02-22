@@ -140,3 +140,16 @@
 ### Association
 
 - belongs_to :user
+
+## Addressテーブル
+
+| Column         | Type       | Option                         |
+| -------------- | ---------- | ------------------------------ |
+| zip_code       | integer    |                                |
+| prefecture_id  | integer    |                                |
+| user           | references |                                |
+
+### Association
+
+- belongs_to :user
+- belongs_to :prefecture
