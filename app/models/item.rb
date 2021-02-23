@@ -15,6 +15,8 @@ class Item < ApplicationRecord
   belongs_to :item_status
   belongs_to :shipping
 
+  has_many :likes
+  has_many :users, through: :likes
   belongs_to :user
   has_one    :order
   has_one_attached :image
