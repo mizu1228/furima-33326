@@ -1,0 +1,18 @@
+<% if current_user.liked_by?(item.id) %>
+  <div class="favorite-btn" id="item-<%= @item.id %>">
+   <%= link_to item_destroy_like_path(item), method: :delete do %>
+     <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20" %>
+     <span>いいね <%= item.likes.count %></span>
+  </div>
+   <% end %>
+<% else %>
+  <div class="favorite-btn" id="item-<%= @item.id %>" >
+   <%= link_to item_create_like_path(item), method: :post do %>
+     <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+     <span>いいね <%= item.likes.count %></span>
+  </div>
+   <% end %>
+<% end %>
+
+<%# Ajaxを導入できていない！！ %>
+<%# Ajaxを導入する際は、link_toに  remote: true  を追加することを忘れずに！！ %>

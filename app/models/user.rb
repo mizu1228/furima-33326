@@ -38,10 +38,17 @@ class User < ApplicationRecord
     !deleted_at ? super : :delete_account
   end
 
-  has_many :items, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_items, through: :likes, source: :post
+  has_many :items
   has_many :orders
   has_many :comments
   has_one_attached :image
   # has_one :address
+
+  def liked_by?(item_id)
+    likes.where(item_id: item_id).exists?
+  end
+
 end
 
