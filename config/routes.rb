@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   end
   resources :dummy_item, only: :index
   resources :users, only: [:show]
+  resources :relationships, only: [:create, :destroy]
 end
