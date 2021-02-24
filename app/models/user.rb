@@ -46,6 +46,32 @@ class User < ApplicationRecord
   has_one_attached :image
   # has_one :address
 
+  has_many :relationships
+  has_many :followings, through: :relationships, source: :follow
+  # 架空のクラスを命名し、中間テーブルを通してfollowを参照する user.followingsでフォローユーザーを取得できる
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
+  #  フォローの逆の処理をしている
+  has_many :followers, through: :reverse_of_relationships, source: :user
+
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+    # フォローするユーザーが自分ではないか？重複していないか？を判断する
+  end
+
+  def unfollow(other_user)
+    relationship = self.relationships.find_by(follow_id: other_user.id)
+    relationship.destroy if relationship
+    # フォローがあれば外す処理
+  end
+
+  def following?(other_user)
+    self.followings.include?(other_user)
+    # other_userが含まれているかを判断する
+  end
+
+
   def liked_by?(item_id)
     likes.where(item_id: item_id).exists?
   end
